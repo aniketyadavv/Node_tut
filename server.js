@@ -127,3 +127,24 @@ app.listen(8000, () => {
 
 
 // < ----------- DataBase -----------> // Day 3
+Web development = client + server + database
+Let's suppose we want to open a restuarant and there is lots of data around it.
+
+    Each person's details:
+    * Name
+    * Age
+    * Work
+    * MObile_no
+    * Salary
+    * Email
+    * Address
+     
+    Menu's details:
+    * Name of dish
+        * Price
+        * Taste(like sour, sweet)
+        * is_drink(boolean true, false)
+        * iNgredients(array of data - [Wheat, rice, sugar])
+        * Number of sales
+
+    *** We use MongoDB as database ***
