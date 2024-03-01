@@ -97,8 +97,32 @@ How data is sent and recieved btwn a client(web browser) and a server(built with
     * PATCH
     * DELETE
 
+// Creating server only using Nodejs --- SO SO way 
 
-const express = require('express')
+const http = require("http")
+
+const server = http.createServer((req, res) => {
+    if (req.url === "/") {
+        res.end("Home Page")
+    }
+    else if (req.url === "/about") {
+        res.end("About Page")
+    }
+    else if (req.url === "/contact") {
+        res.end("Contact Page")
+    }
+    else {
+        res.end("404 Page not found")
+    }
+});
+
+server.listen(8000)
+
+
+
+// Create server by using express
+
+const express = require('express');
 const app = express();
 
 app.get('/', function (req, res) {
@@ -127,6 +151,7 @@ app.listen(8000, () => {
 
 
 // < ----------- DataBase -----------> // Day 3
+/*
 Web development = client + server + database
 Let's suppose we want to open a restuarant and there is lots of data around it.
 
@@ -147,4 +172,87 @@ Let's suppose we want to open a restuarant and there is lots of data around it.
         * iNgredients(array of data - [Wheat, rice, sugar])
         * Number of sales
 
-    *** We use MongoDB as database ***
+    **** We use MongoDB as database ****
+   
+   ****Postman is use as a frontend to process database.****
+
+   Connect MongoDB with NodeJS:
+        Now, To connect MongoDB with NodeJS we need a MongoDB driver (a set
+        of programs)
+        A MongoDB driver is essential when connecting Node.js with MongoDB
+        because it acts as a bridge between your Node.js application and the
+        MongoDB database.
+        MongoDB speaks its own language (protocol) to interact with the database
+        server.
+        Node.js communicates in JavaScript.
+        The driver translates the JavaScript code from Node.js into a format that
+        MongoDB can understand and vice versă.
+        The driver provides a set of functions and methods that make it easier to
+        perform common database operations from your Node.js code.
+        The driver helps you handle errors that might occur during database
+        interactions. It provides error codes, descriptions, and other details to help
+        you troubleshoot issues.
+        The most popular driver is the official MongoDB Node.js driver, also known
+        as the mongodb package.
+         `npm install mongodb`
+
+    **** Now but we are going to use Mongoose, rather than mongodb****
+        Mongoose is an Object Data Modeling (ODM) library for MongoDB and
+        Node.js
+        There are lots of reasons we prefer Mongoose rather than a native official
+        driver
+        Things are a lot easier here:
+        Relate Real life Examples with mobiles with earphones)
+        Mongoose is like a translator between your Node.js code and MongoDB. It
+        makes working with the database smoother and easier.
+        With Mongoose, you can define how your data should look, like making a
+        blueprint for your documents. It's like saying, "In our database, each
+        person's information will have a name, age, and email." This makes sure
+        your data stays organized.
+        Mongoose helps you make sure the data you put into the database is
+        correct. It's like having someone check if you've written your email address
+        correctly before sending a message.
+        Very easy to query from the database
+
+        But if you are using mongodb Native Driver
+        You need to write a lot of detailed instructions to make sure everything
+        works correctly.
+        In a nutshell, using mongoose makes working with mongoDB in NodeJs much easier
+        and smoother.
+        
+*/
+
+import express from "express";
+
+const app = express();
+
+app.get('/', function (req, res) {
+    res.send("Welcome to our resturant")
+})
+
+app.get('/bhatoore', function (req, res) {
+    res.send("Here we serve best chhole bhature in south india")
+})
+
+app.get('/idli', (req, res) => {
+    var customised_idli = {
+        type: "Rava idli",
+        size: '10 cm dia',
+        is_sambar: true,
+        is_chutney: false
+    }
+    res.send(customised_idli)
+})
+app.post('/items', (req, res) => {
+    res.send({
+        "employee": {
+            "name": "sonoo",
+            "salary": 56000,
+            "married": true
+        }
+    })
+})
+app.listen(8000, () => {
+    console.log("App is working");
+})
+
