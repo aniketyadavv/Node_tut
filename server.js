@@ -122,7 +122,8 @@ server.listen(8000)
 
 // Create server by using express
 
-const express = require('express');
+import express from "express";
+
 const app = express();
 
 app.get('/', function (req, res) {
@@ -142,10 +143,19 @@ app.get('/idli', (req, res) => {
     }
     res.send(customised_idli)
 })
-
-app.listen(8000, () => {
-    console.log("Listening on Port 8000")
+app.post('/items', (req, res) => {
+    res.send({
+        "employee": {
+            "name": "sonoo",
+            "salary": 56000,
+            "married": true
+        }
+    })
 })
+app.listen(8000, () => {
+    console.log("App is working");
+})
+
 
 */
 
@@ -222,37 +232,4 @@ Let's suppose we want to open a restuarant and there is lots of data around it.
         
 */
 
-import express from "express";
-
-const app = express();
-
-app.get('/', function (req, res) {
-    res.send("Welcome to our resturant")
-})
-
-app.get('/bhatoore', function (req, res) {
-    res.send("Here we serve best chhole bhature in south india")
-})
-
-app.get('/idli', (req, res) => {
-    var customised_idli = {
-        type: "Rava idli",
-        size: '10 cm dia',
-        is_sambar: true,
-        is_chutney: false
-    }
-    res.send(customised_idli)
-})
-app.post('/items', (req, res) => {
-    res.send({
-        "employee": {
-            "name": "sonoo",
-            "salary": 56000,
-            "married": true
-        }
-    })
-})
-app.listen(8000, () => {
-    console.log("App is working");
-})
-
+// < ----------- Mongoose Schema in NodeJS -----------> // Day 4  
