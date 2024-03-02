@@ -232,4 +232,42 @@ Let's suppose we want to open a restuarant and there is lots of data around it.
         
 */
 
-// < ----------- Mongoose Schema in NodeJS -----------> // Day 4  
+// < ----------- Mongoose Schema in NodeJS -----------> // Day 4
+
+
+// EJS tutorial --> we may need to pass the value through HTML variably, so we must use EJS
+
+import express from "express";
+import path from "path";
+
+const app = express();
+const users = []; // made temporary array to store the static user-info
+
+//middleware use to access data from HTML form
+app.use(express.static(path.join(path.resolve(), "public")));
+app.use(express.urlencoded({ extended: true }));
+
+//setting up view engine
+app.set("view engine", "ejs");
+
+app.get('/', (req, res) => {
+    res.render("index", { name: "AniketKumar" });
+})
+
+app.get('/users', (req, res) => {
+    res.json(users);
+})
+
+app.post('/', (req, res) => {
+    console.log(req.body.user_name);
+    users.push({
+        username: req.body.user_name,
+        usermail: req.body.user_mail,
+        password : req.body.user_password
+    })
+
+})
+
+app.listen(8000, () => {
+    console.log('Listing on 8000')
+})
