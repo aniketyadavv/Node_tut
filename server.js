@@ -272,3 +272,59 @@ app.listen(8000, () => {
 */
 
 // < ----------- Mongoose Schema in NodeJS -----------> // Day 4
+// What are models OR schemas in DB --> Models are like blueprint of our DB. we can use CRUD operations, on a schema of DB.
+
+// import express from "express";
+const express = require('express') // make sure type:commonjs in package.json
+const app = express();
+const db = require('./db');
+
+//bodyparser
+const bodyParser = require('body-parser'); // convert json into object and store into req.body
+app.use(bodyParser.json());
+
+const Person = require('./models/person');
+
+app.get('/', function (req, res) {
+    res.send("Welcome to our resturant")
+})
+
+// POST route to add a person into your mongodb
+app.post('/person', async (req, res) => { //async fun is used to used with asynchronous operations.
+    try {
+        // assuming the request body contai the person' data
+        const data = req.body;
+
+        //create a newPerson document using mongoose model
+        const newPerson = new Person(data);
+
+        //save the newPerson to the DB
+        const resposne = await newPerson.save(); //await till the fun executed
+        console.log("data saved");
+        res.status(200).json(resposne);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+})
+
+
+// GET route to get data from mongodb
+app.get('/person', async (req, res) => {
+    try {
+        const data = await Person.find();
+        console.log("Data fetched");
+        res.status(200).json(data);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+})
+
+app.listen(8000, () => {
+    console.log("Listening on 8000");
+})
+
+
