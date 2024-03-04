@@ -230,9 +230,6 @@ Let's suppose we want to open a restuarant and there is lots of data around it.
         In a nutshell, using mongoose makes working with mongoDB in NodeJs much easier
         and smoother.
         
-*/
-
-// < ----------- Mongoose Schema in NodeJS -----------> // Day 4
 
 
 // EJS tutorial --> we may need to pass the value through HTML variably, so we must use EJS
@@ -263,7 +260,7 @@ app.post('/', (req, res) => {
     users.push({
         username: req.body.user_name,
         usermail: req.body.user_mail,
-        password : req.body.user_password
+        password: req.body.user_password
     })
 
 })
@@ -271,3 +268,7 @@ app.post('/', (req, res) => {
 app.listen(8000, () => {
     console.log('Listing on 8000')
 })
+
+*/
+
+// < ----------- Mongoose Schema in NodeJS -----------> // Day 4
