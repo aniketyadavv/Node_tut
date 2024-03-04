@@ -327,4 +327,10 @@ app.listen(8000, () => {
     console.log("Listening on 8000");
 })
 
-
+//CRUD Operation
+            Create-----> POST
+            Read-----> GET
+            Update-----> PUT / PATCH
+            Delete-----> DELETE
+ 
+TO-DO: Create a menu schema by yourself.
