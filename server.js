@@ -323,14 +323,37 @@ app.get('/person', async (req, res) => {
     }
 })
 
+app.get('/person/:workType', async (req, res) => {
+    try {
+        
+    } catch (err) {
+        
+    }
+})
+
 app.listen(8000, () => {
     console.log("Listening on 8000");
 })
 
-//CRUD Operation
-            Create-----> POST
-            Read-----> GET
-            Update-----> PUT / PATCH
-            Delete-----> DELETE
- 
-TO-DO: Create a menu schema by yourself.
+// //CRUD Operation
+//             Create-----> POST
+//             Read-----> GET
+//             Update-----> PUT / PATCH
+//             Delete-----> DELETE
+
+
+/*
+// < ----------- NodeJS Routing in Express  -----------> // Day 5
+
+Parameterised API calls. 
+now to add multiple endpoint we have to create all endpoints like this:
+        /person/chef
+         / person / manager
+         / person / waiter
+
+this is not a correct method, to create many functions we use Parameterised endpoint.
+
+    localhost: 8000 / person /: workType
+    workType: -[chef, manager, waiter]
+
+*/
