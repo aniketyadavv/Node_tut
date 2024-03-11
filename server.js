@@ -278,6 +278,7 @@ app.listen(8000, () => {
 const express = require('express') // make sure type:commonjs in package.json
 const app = express();
 const db = require('./db');
+require('dotenv').config();
 
 //bodyparser
 const bodyParser = require('body-parser'); // convert json into object and store into req.body
@@ -325,9 +326,19 @@ app.get('/person', async (req, res) => {
 
 app.get('/person/:workType', async (req, res) => {
     try {
-        
+        const workType = req.params.workType; // extract the worktype from the URL parameters
+        if (workType == 'chef' || workType == 'manager' || workType == 'waiter') {
+            const response = await Person.find({ work: workType });
+            console.log("response fetched");
+            res.status(200).json(response);
+        }
+        else {
+            res.status(400).json({ error: "Invalid work type" });
+        }
+
     } catch (err) {
-        
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 })
 
