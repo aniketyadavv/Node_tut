@@ -280,6 +280,8 @@ const app = express();
 const db = require('./db');
 require('dotenv').config();
 
+const PORT = process.env.PORT || 3000;
+
 //bodyparser
 const bodyParser = require('body-parser'); // convert json into object and store into req.body
 app.use(bodyParser.json());
@@ -342,7 +344,7 @@ app.get('/person/:workType', async (req, res) => {
     }
 })
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
     console.log("Listening on 8000");
 })
 
@@ -366,5 +368,8 @@ this is not a correct method, to create many functions we use Parameterised endp
 
     localhost: 8000 / person /: workType
     workType: -[chef, manager, waiter]
+
+    To host DB server use --> MONGOdb Atlas
+    host Nodejs server --> Render
 
 */
